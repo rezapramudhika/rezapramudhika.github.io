@@ -194,7 +194,6 @@ nav a:hover{
     float: left;
     margin-top: 80px;
     padding-left: 2%;
-    /* padding: 0 10px 10px 30px; */
     text-align: left;
     margin-left: 10%;
 }
@@ -220,7 +219,6 @@ nav a:hover{
     width: 40%;
     float: right;
     margin-top: 80px;
-    /* padding: 0 10px 10px 10px; */
     text-align: left;
     margin-right: 10%;
     margin-bottom: 20px;
