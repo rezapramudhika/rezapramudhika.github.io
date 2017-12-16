@@ -21,7 +21,7 @@ body {
 }
 
 nav{
-    padding-left: 100px;
+    padding-left: 10%;
     padding-top: 30px;
 }
 
@@ -39,18 +39,33 @@ nav a:hover{
     overflow: auto;
     width: 100%;
     height: auto;
+    margin: 0 auto;
     background-color: #e4e5eb;
 }
 
 .left{
     width: 50%;
-    padding: 100px 0 0 100px;
+    height: auto;
+    position: relative;
+    padding: 10% 0 0 10%;
     float: left;
+    margin-bottom: auto;
 }
 
 .right{
     width: 40%;
+    height: auto;
+    position: static;
+    padding: 5% 0 0 0;
     float: right;
+}
+
+#picture{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    display: block;
+    /* position: sticky; */
 }
 
 .media{
@@ -143,13 +158,6 @@ nav a:hover{
     font-size: 28px;
     margin :0 auto;
     text-align: left;
-}
-
-#picture{
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0;
-    display: block;
 }
 
 .content{
