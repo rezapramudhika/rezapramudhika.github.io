@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Calorie Counter App</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <header>
+            <input type="text" id="txtSearch" name="search" placeholder="Makan apa saja kamu hari ini?">
+            <button id="btnSearch">SEARCH</button>
+            <div class="search-result-container">
+                <ul class="search-list-group" id="result"></ul>
+            </div>
+        </header>
+
+        <div class="selected-food-container">
+            <ul class="selected-food-list-group" id="selectedFood">
+            </ul>
+        </div>
+        
+        <script src="calorie-counter.js"></script>
+    </body>
+</html>
