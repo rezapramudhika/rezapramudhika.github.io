@@ -23,10 +23,14 @@ var listSearchItem = document.getElementById('listSearchItem');
 var txtSearch = document.getElementById('txtSearch');
 var result = document.getElementById('result');
 var selectedFood = document.getElementById('selectedFood');
+var ul = document.getElementById('result');
+//var p = document.getElementsByClassName('total-calorie-report');
+
 var totalCal = 0;
+var list = document.createElement('li');
 
 btnSearch.addEventListener('click', function(){
-    var searchValue = txtSearch.value;
+    var searchValue = txtSearch.value.trim();
     var expression = new RegExp(searchValue, 'gi');
     if(searchValue.length !== 0){
         if(result.children.length === 0){
@@ -38,38 +42,65 @@ btnSearch.addEventListener('click', function(){
                     result.append(list);
                 }
             }
-        }else{
-            for(var j=0; j<result.children.length; j++){
-                if(!result.children[j].textContent.match(expression)){
-                    var list = document.createElement('li');
-                    list.textContent = foodDatabase[i].name;
-                    list.value = i;
-                    result.append(list);
-                }
-            }
         }
     }
 });
 
-var ul = document.getElementById('result');
+
 txtSearch.onclick = function(){
-    ul.innerHTML = '';
+    result.innerHTML = '';
 }
 
-var p = document.createElement('p');
-
-ul.onclick = function(){
+result.onclick = function(){
     var target = event.target;
-    ul.innerHTML = '';
+    result.innerHTML = '';
     txtSearch.value = '';
     var list = document.createElement('li');
-    list.textContent = foodDatabase[target.value].name +'\nKalori: '+foodDatabase[target.value].calories+'';
-    list.innerHTML = list.innerHTML.replace(/\n/g, '<br />');
-    totalCal += foodDatabase[target.value].calories;
+    list.setAttribute('class', 'selected-food-list');
+    list.setAttribute('id', target.value);
+    
+    var foodName = document.createElement('p');
+    foodName.setAttribute('class', 'food-name')
+    var servingSize = document.createElement('p');
+    servingSize.setAttribute('class', 'serving-size');
+    var btnDeleteItem = document.createElement('button');
+    btnDeleteItem.setAttribute('class', 'delete-item');
+    btnDeleteItem.setAttribute('value', target.value);
+    var calorie = document.createElement('p');
+    calorie.setAttribute('class', 'calorie');
+    
+    var txtFood = document.createTextNode(foodDatabase[target.value].name);
+    foodName.appendChild(txtFood);
+    var txtServingSize = document.createTextNode(foodDatabase[target.value].servingSize);
+    servingSize.appendChild(txtServingSize);
+    var txtCalorie = document.createTextNode(foodDatabase[target.value].calories + ' kalori');
+    calorie.appendChild(txtCalorie);
+    btnDeleteItem.appendChild(document.createTextNode('Delete'));
+
+    btnDeleteItem.addEventListener('click', function(){
+        var item = document.getElementById(target.value);
+        item.parentNode.removeChild(item);
+        calculateCalories(target.value, 'min');
+    });
+
+    list.append(foodName);
+    list.append(servingSize);
+    list.append(btnDeleteItem);
+    list.append(calorie);
     selectedFood.append(list);
-    p.textContent = 'Total kalori yang kamu konsumsi hari ini : '+ totalCal +' Kalori';
-    body.append(p);
+    calculateCalories(target.value, 'plus');
 }
 
+// p.setAttribute('class', 'total-calories-report')
+// p.textContent = totalCal +' Kalori';
 
-
+function calculateCalories(index, type){
+    if(type === 'plus'){
+        totalCal += foodDatabase[index].calories;
+    }else if(type === 'min'){
+        totalCal -= foodDatabase[index].calories;
+    }
+    document.getElementById('calculateResult').innerHTML = totalCal +' Kalori';
+    // modify.textContent = totalCal +' Kalori';
+    // body.append(p);
+}

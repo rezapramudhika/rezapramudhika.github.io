@@ -2,12 +2,14 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Calorie Counter App</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
         <header>
+            <p>CALORIE COUNTER</p>
             <input type="text" id="txtSearch" name="search" placeholder="Makan apa saja kamu hari ini?">
             <button id="btnSearch">SEARCH</button>
             <div class="search-result-container">
@@ -16,10 +18,12 @@
         </header>
 
         <div class="selected-food-container">
-            <ul class="selected-food-list-group" id="selectedFood">
-            </ul>
+            <ul class="selected-food-list-group" id="selectedFood"></ul>
         </div>
-        
+        <div class="result-container">
+            <p class="total-calories-info">Hari ini kamu sudah mengkonsumsi sebanyak</p>
+            <p class="total-calories-report" id="calculateResult">0 Kalori</p>
+        </div>
         <script src="calorie-counter.js"></script>
     </body>
 </html>
